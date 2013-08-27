@@ -121,5 +121,5 @@ https://github.com/etsy/statsd/graphs/contributors
 [docs_admin_interface]: https://github.com/etsy/statsd/blob/master/docs/admin_interface.md
 [docs_backend_interface]: https://github.com/etsy/statsd/blob/master/docs/backend_interface.md
 [docs_namespacing]: https://github.com/etsy/statsd/blob/master/docs/namespacing.md
-[travis-ci_status_img]: https://travis-ci.org/etsy/statsd.png?branch=backends-as-packages
-[travis-ci_statsd]: https://travis-ci.org/etsy/statsd
+[travis-ci_status_img]: https://travis-ci.org/bonusboxme/statsd.png?branch=backends-as-packages
+[travis-ci_statsd]: https://travis-ci.org/bonusboxme/statsd
