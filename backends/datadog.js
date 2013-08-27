@@ -11,17 +11,17 @@
  *   datadogApiKey: Your DataDog API key
  */
 
+// fixes Hostname/IP doesn't match certificate's altnames
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+
 var net = require('net'),
    util = require('util'),
    os = require('os'),
    Datadog = require('../datadogApi');
 
 var debug;
-
 var flushInterval;
-
 var hostname;
-
 var datadogApiHost;
 var datadogApiKey;
 
