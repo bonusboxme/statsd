@@ -1,29 +1,14 @@
-StatsD [![Build Status][travis-ci_status_img]][travis-ci_statsd]
+StatsD 
 ======
+[![Build Status](https://travis-ci.org/DataDog/statsd.png?branch=master)](https://travis-ci.org/DataDog/statsd)
 
-A network daemon that runs on the [Node.js][node] platform and
-listens for statistics, like counters and timers, sent over [UDP][udp]
-and sends aggregates to one or more pluggable backend services (e.g.,
-[Graphite][graphite]).
-
-We ([Etsy][etsy]) [blogged][blog post] about how it works and why we created it.
-
-Inspiration
------------
-
-StatsD was inspired (heavily) by the project (of the same name) at Flickr.
-Here's a post where Cal Henderson described it in depth:
-[Counting and timing][counting-timing]
-Cal re-released the code recently:
-[Perl StatsD][Flicker-StatsD]
+A fork of etsy's network daemon for aggregating statistics (counters and timers), rolling them up, then sending them to [Datadog][datadog].
 
 Key Concepts
 --------
 
 * *buckets*
-  Each stat is in its own "bucket". They are not predefined anywhere. Buckets
-can be named anything that will translate to Graphite (periods make folders,
-etc)
+  Each stat is in its own "bucket". They are not predefined anywhere.
 
 * *values*
   Each stat will have a value. How it is interpreted depends on modifiers. In
@@ -37,22 +22,13 @@ general values should be integer.
 Installation and Configuration
 ------------------------------
 
- * Install node.js
- * Clone the project
- * Create a config file from exampleConfig.js and put it somewhere
- * Start the Daemon:
+1. Install node.js
+2. Clone the project
+3. Create a config file from `exampleConfig.js` and put it somewhere
+
+Then start the daemon:
 
     node stats.js /path/to/config
-
-More Specific Topics
---------
-* [Metric Types][docs_metric_types]
-* [Graphite Integration][docs_graphite]
-* [Supported Backends][docs_backend]
-* [Admin TCP Interface][docs_admin_interface]
-* [Backend Interface][docs_backend_interface]
-* [Metric Namespacing][docs_namespacing]
-
 
 Debugging
 ---------
@@ -64,6 +40,29 @@ There are additional config variables available for debugging:
 
 For more information, check the `exampleConfig.js`.
 
+Supported Backends
+------------------
+
+StatsD supports multiple, pluggable, backend modules that can publish
+statistics from the local StatsD daemon to a backend service or data
+store. Backend services can retain statistics for
+longer durations in a time series data store, visualize statistics in
+graphs or tables, or generate alerts based on defined thresholds. A
+backend can also correlate statistics sent from StatsD daemons running
+across multiple hosts in an infrastructure.
+
+This fork specifically implements the Datadog backend. Other backends
+are available as well. See the [original documentation](https://github.com/etsy/statsd)
+for information about other backends.
+
+Installation and Configuration
+------------------------------
+
+1. Install node.js
+2. Clone the project
+3. Create a config file from exampleConfig.js and put it somewhere
+4. Get your Datadog API key and generate an app key and stick them into your config file
+5. Start the Daemon: `node stats.js /path/to/config`
 
 Tests
 -----
@@ -80,16 +79,13 @@ Tests can be executed with `./run_tests.sh`.
 
 Meta
 ---------
-- IRC channel: `#statsd` on freenode
-- Mailing list: `statsd@librelist.com`
+- IRC channel: `#datadog` on freenode
 
 
 Contribute
 ---------------------
 
 You're interested in contributing to StatsD? *AWESOME*. Here are the basic steps:
-
-fork StatsD from here: http://github.com/etsy/statsd
 
 1. Clone your fork
 2. Hack away
@@ -101,25 +97,10 @@ fork StatsD from here: http://github.com/etsy/statsd
 
 We'll do our best to get your changes in!
 
+[datadog]: http://datadoghq.com
+
 Contributors
 -----------------
 
 In lieu of a list of contributors, check out the commit history for the project:
-https://github.com/etsy/statsd/graphs/contributors
-
-[graphite]: http://graphite.wikidot.com
-[etsy]: http://www.etsy.com
-[blog post]: http://codeascraft.etsy.com/2011/02/15/measure-anything-measure-everything/
-[node]: http://nodejs.org
-[nodemods]: http://nodejs.org/api/modules.html
-[counting-timing]: http://code.flickr.com/blog/2008/10/27/counting-timing/
-[Flicker-StatsD]: https://github.com/iamcal/Flickr-StatsD
-[udp]: http://en.wikipedia.org/wiki/User_Datagram_Protocol
-[docs_metric_types]: https://github.com/etsy/statsd/blob/master/docs/metric_types.md
-[docs_graphite]: https://github.com/etsy/statsd/blob/master/docs/graphite.md
-[docs_backend]: https://github.com/etsy/statsd/blob/master/docs/backend.md
-[docs_admin_interface]: https://github.com/etsy/statsd/blob/master/docs/admin_interface.md
-[docs_backend_interface]: https://github.com/etsy/statsd/blob/master/docs/backend_interface.md
-[docs_namespacing]: https://github.com/etsy/statsd/blob/master/docs/namespacing.md
-[travis-ci_status_img]: https://travis-ci.org/etsy/statsd.png?branch=backends-as-packages
-[travis-ci_statsd]: https://travis-ci.org/etsy/statsd
+http://github.com/etsy/statsd/commits/master and https://github.com/DataDog/statsd/commits/master

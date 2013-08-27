@@ -4,6 +4,10 @@ Required Variables:
 
   port:             StatsD listening port [default: 8125]
 
+Datadog Require Variables:
+
+  datadogApiKey:    The API key for your Datadog org
+
 Graphite Required Variables:
 
 (Leave these unset to avoid sending stats to Graphite.
@@ -96,8 +100,6 @@ Optional Variables:
 
 */
 {
-  graphitePort: 2003
-, graphiteHost: "graphite.example.com"
-, port: 8125
-, backends: [ "./backends/graphite" ]
+   "backends": ["./backends/datadog"],
+   "datadogApiKey": "YOUR_API_KEY_HERE from http://dtdg.co/my-api-key"
 }
